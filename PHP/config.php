@@ -1,8 +1,0 @@
-<?php
-
-$GLOBALS['servername'] = "localhost";
-$GLOBALS['username'] = "pis";
-$GLOBALS['password'] = "YDmbHKZk6cx9tBxP";//Leci po localhoscie, wiec xd
-$GLOBALS['dbname'] = "PIS";
-
-?>
