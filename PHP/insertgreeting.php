@@ -1,9 +1,10 @@
 <?php
-	include_once('sqlinit.php');
-	
-	if(isset($_POST['inputUsername']) && isset($_POST['inputPassword'])) {
+	include_once("sqlconnect.php");
+	include_once("sessionchecker.php");
+	$session = $_SESSION['session'];
+	if(isset($_SESSION['session']) && isset($_GET['textArea'])) {
 		$conn = getDBConnection();
-		$stmt = $conn->prepare("SELECT password, role FROM Users WHERE  (login = ? AND password = ?)");
+		$stmt = $conn->prepare("INSERT INTO  ");
 		$stmt->bind_param("ss", $login, $password);
 		$login = $_POST['inputUsername'];
 		$password = hash('sha256', $_POST['inputPassword']);
@@ -32,7 +33,7 @@
 		$stmt->close();
 		echo "Zostales zalogowany ".$_POST['inputUsername']."\r\n";
 			
-		header("Location:membersarea.php");
+		header("Location:index.php");
 		exit;
 	}
 	/*

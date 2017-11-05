@@ -1,6 +1,5 @@
 <?php 
 	include_once('config.php');
-	include_once('sqlconnect.php');
 	include_once('sqlinit.php');
  	if(isset($_POST['inputUsername']) && isset($_POST['inputPassword'])) {
 		$conn = getDBConnection();
