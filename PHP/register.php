@@ -4,8 +4,8 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Opinie o Poznaniu</title>
-	<meta name="description" content="Opinie">
+	<title>Pozdrowienia</title>
+	<meta name="description" content="Pozdrowienia użytkowników">
 	<meta name="author" content="Grzegorz Boiński">
 
 	<link rel="stylesheet" href="css/styles.css?v=1.0">
@@ -23,7 +23,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 		<form class="form-horizontal" method="post" action="validateandregister.php">
 		  <fieldset>
-			<legend>Zarejestruj sie, aby moc dodawac opinie!</legend>
+			<legend>Zarejestruj się, aby móc dodawać pozdrowienia!</legend>
 			<div class="form-group">
 			  <label for="inputUsername" class="col-lg-2 control-label">Nazwa użytkownika</label>
 			  <div class="col-lg-10">

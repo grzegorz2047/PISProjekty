@@ -26,6 +26,6 @@
 		echo "Post ma: ".$key." ".$value."\r\n";
 	}*/
 	
- 	header("Location:membersarea.php");
+ 	header("Location:login.php?start=registered");
 	exit;
 ?>

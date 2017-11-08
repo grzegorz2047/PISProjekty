@@ -4,37 +4,32 @@
 	$session = $_SESSION['session'];
 	if(isset($_SESSION['session']) && isset($_GET['textArea'])) {
 		$conn = getDBConnection();
-		$stmt = $conn->prepare("INSERT INTO  ");
-		$stmt->bind_param("ss", $login, $password);
-		$login = $_POST['inputUsername'];
-		$password = hash('sha256', $_POST['inputPassword']);
+		$stmt = $conn->prepare("SELECT id FROM Users where session = ? LIMIT 1");
+		$stmt->bind_param("s", $_SESSION['session']);
+		
+		$answer = $stmt->execute();
+		mysqli_stmt_bind_result($stmt, $name);
+
+		/* fetch values */
+		while (mysqli_stmt_fetch($stmt)) {
+			printf ("%s (%s)\n\r", $name);
+		}
+		$stmt = $conn->prepare("INSERT INTO Greetings (author, textarea) VALUES (? , ?)");
+		$stmt->bind_param("is", $name, $textarea);
+		$textarea = $_GET['textArea'];
 		$answer = $stmt->execute();
 		$error = $conn->error;
 		//echo "Wstawilem ".$login." oraz ".$password;
  		if($error != "") {
 			$stmt->close();
-			die("Podany login juz istnieje!");
+			die("BLAD!");
 		}
-		//$result = mysql_query($sql);
-		/* bind result variables */
-		mysqli_stmt_bind_result($stmt, $name, $code);
-
-		/* fetch values */
-		while (mysqli_stmt_fetch($stmt)) {
-			printf ("%s (%s)\n\r", $name, $code);
-		}
-		session_start();
-		$session = $_SESSION['session'] = hash('sha256', $login.$password.time());
-		$_SESSION['login'] = $login;
-
-		$stmt = $conn->prepare("UPDATE Users SET session = ? WHERE login = ?");
-		$stmt->bind_param("ss", $session, $login);
-		$stmt->execute();
-		$stmt->close();
-		echo "Zostales zalogowany ".$_POST['inputUsername']."\r\n";
-			
 		header("Location:index.php");
 		exit;
+	} else {
+		echo "Cos poszlo nie tak!";
+		echo "Wpisales: ".$_GET['textArea'];
+		echo "Twoja sesja to ".$_SESSION['session'];
 	}
 	/*
 	

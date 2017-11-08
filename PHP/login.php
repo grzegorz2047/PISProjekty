@@ -8,7 +8,7 @@
 	<meta name="description" content="Opinie">
 	<meta name="author" content="Grzegorz Boiński">
 
-	<link rel="stylesheet" href="css/styles.css?v=1.0">
+	<link rel="stylesheet" href="css/style.css?v=1.0">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 
 	<!--[if lt IE 9]>
@@ -26,6 +26,8 @@
 			foreach($_GET as $key => $value) {
 				echo "Post ma: ".$key." ".$value."\r\n";
 			}*/
+			echo "<a href='index.php' class='btn btn-primary right'>Strona główna</a>";
+
 			echo $_SESSION['session'];
 			if(isset($_SESSION['session'])) {
 				echo "<a href='logout.php' class='btn btn-primary'>Logout</a>";

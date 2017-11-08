@@ -1,17 +1,15 @@
 <?php
 	include_once("sqlconnect.php");
-	$sql = "CREATE DATABASE IF NOT EXISTS PIS";
-	$conn = getDBConnection();
+	$sql = "CREATE DATABASE IF NOT EXISTS PIS CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
+	$conn = getGlobalDBConnection();
 	//echo "Connected successfully";
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
 	$conn->query($sql);
-	if ($conn->query($sql) === TRUE) {
-		//echo "Gut";
-	} else {
-		echo "Error creating table: " . $conn->error;
-	}
+	mysqli_close($conn);
+	$conn = null;
+	$conn = getDBConnection();
 	
 	$sql = "CREATE TABLE IF NOT EXISTS Users (
 		id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
@@ -20,12 +18,22 @@
 		role VARCHAR(60) NOT NULL,
 		session VARCHAR(200)
 		)";
-	$conn->query($sql);	
+		
+	if ($conn->query($sql) === TRUE) {
+		//echo "Gut";
+	} else {
+		echo "Error creating table: " . $conn->error;
+	}
 	
-	$sql = "CREATE TABLE IF NOT EXISTS Greets (
-		id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-		author INT(6) NOT NULL,
-		textarea TEXT NOT NULL
-		)";
-	$conn->query($sql);
+	$sql = "CREATE TABLE IF NOT EXISTS Greetings(
+			  id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+			  author INT NOT NULL REFERENCES Users(id),
+			  textarea TEXT
+			)";
+
+	if ($conn->query($sql) === TRUE) {
+		//echo "Gut";
+	} else {
+		echo "Error creating table: " . $conn->error;
+	}
 ?>
